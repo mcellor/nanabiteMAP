@@ -72,6 +72,8 @@ function getComments(page, cb) {
   });
 }
 
+
+
 Page({
   data: {
     showDialog: false,
@@ -81,34 +83,46 @@ Page({
     indicatorDots: true,
     autoplay: true,
     interval: 4000,
-    duration: 1000
+    duration: 1000,
+    keepBindtap: "keep",  ///
+
       //
-      ,
     hide_loadmore: true,
     ic_support: "/imgs/ic_heart.png",
     ic_unsupport: "/imgs/ic_heart.png"
   },
   onLoad: function(option) {
     var that = this;
-
-    console.log('option', option);
     if (option.item) {
       gourmet = JSON.parse(option.item);
       that.setData({
         gourmet: gourmet
       })
-
+      //检查是否已经浏览过
       var logs = wx.getStorageSync('readLogs') || [];
       if (logs.length > 0) {
         logs = logs.filter(function (log) {
           return log[0] !== gourmet.objectId;
         });
       }
+      //检查是否收藏过
+      var markedlogs = wx.getStorageSync('keepLogs') || [];
+      if (markedlogs.length > 0) {
+        markedlogs = markedlogs.filter(function (log) {
+          return log[0] == gourmet.objectId;
+        });
+        // console.log("!!!!",markedlogs)
+        if(markedlogs.length>0){
+          that.setData({
+            keepBindtap: 'cancelKeep'
+        })
+        }
+      }
       // 如果超过指定数量
       if (logs.length > 19) {
         logs.pop(); //去除最后一个
       }
-      logs.unshift([gourmet.objectId, gourmet.title, gourmet.head_url]);
+      logs.unshift([gourmet.objectId, gourmet.title, gourmet.head_url,gourmet]);
       wx.setStorageSync('readLogs', logs);
 
       loadFirstPage(this);
@@ -150,6 +164,35 @@ Page({
       isShowUserPannel: false
     })
   },
+  /////
+  keep: function () {
+    var t = wx.getStorageSync("keepLogs") || [], e = this.data.gourmet.objectId;
+    t.length > 0 && (t = t.filter(function (t) {
+      return t[0] !== e;
+    })), t.length > 999 && t.pop(), t.unshift([e, this.data.gourmet.title, this.data.gourmet.head_url, this.data.gourmet]),
+      wx.setStorageSync("keepLogs", t), this.setData({
+        keepBindtap: "cancelKeep"
+      }), wx.showToast({
+        title: "收藏成功",
+        icon: "success",
+        mask: !1,
+        duration: 1e3
+      });
+  },////
+
+  cancelKeep: function () {
+    var t = wx.getStorageSync("keepLogs") || [], e = this.data.gourmet.objectId;
+    t.length > 0 && (t = t.filter(function (t) {
+      return t[0] !== e;
+    })), wx.setStorageSync("keepLogs", t), this.setData({
+      keepBindtap: "keep"
+    }), wx.showToast({
+      title: "已取消收藏",
+      icon: "success",
+      mask: !1,
+      duration: 1e3
+    });
+  },
 
   showUserPannel: function() {
     let isShow = this.data.isShowUserPannel
@@ -182,10 +225,8 @@ Page({
 
     ,
   addComment: function(e) {
-      console.log("yeh")
       var that = this;
       var content = this.data.commContent;
-      console.log(content);
       if (content == "" || content == null) {
         return utils.showModal('错误', '请输入评论')
       }

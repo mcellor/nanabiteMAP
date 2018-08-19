@@ -41,7 +41,6 @@ Page({
     });
   },
   onLoad: function (options) {
-    console.log("hi")
     this.setData({
       userInfo: app.getUserinfo_1()
     })
@@ -69,6 +68,16 @@ Page({
         return t;
       })
     });
+  },
+
+  redictDetail: function (e) {
+    var item = e.target.dataset.item[3];
+    console.log(item);
+    if (item) {
+      wx.navigateTo({
+        url: '/pages/detail/detail?item=' + JSON.stringify(item)
+      })
+    }
   },
 
   /**

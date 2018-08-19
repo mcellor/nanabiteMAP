@@ -1,7 +1,7 @@
 <image class='bg' src='/imgs/bg.png'></image>
 <view class="main">
   <view class="body">
-    <text class='title0'>Nanapost 标记地图</text>
+    <text class='title0'>标记地图</text>
     <text class='basictext'>添加照片</text>
   </view>
 
@@ -78,9 +78,8 @@
       </picker>
     </view>
   </view>
-
   <view class='div'>
-    <textarea placeholder="简单描述一下呗：～" bindinput="inputDesc" maxlength="500" class="inputext" />
+    <textarea placeholder="这一刻的想法..." bindinput="inputDesc" maxlength="500" class="inputext" />
   </view>
 
 </view>

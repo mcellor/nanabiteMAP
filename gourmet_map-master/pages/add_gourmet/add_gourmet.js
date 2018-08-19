@@ -9,7 +9,7 @@ var gourmet_desc = "";
 var gourmet_money = "";
 var gourmet_type = "";
 var fileds = ['中国菜', '日本菜', '韩国菜', '东南亚(越南菜 泰国菜)', '法国菜', '英国菜', '德国菜', '意大利菜', '波兰菜', '墨西哥菜', '南美菜', '非洲菜', '地中海菜(土耳其菜', '清真菜', '咖啡店及糕点', '酒吧'];
-var moneys = ['$0 - $10', '$11 - $20 ', '$21 - $30', '$31 - $40', '$41 - $50, $51 + 💎'];
+var moneys = ['$0-10', '$11-20', '$21-30', '$31-40', '$41-50','$51+ 💎'];
 
 var urls = [];
 var headurl = ""; //
@@ -31,7 +31,7 @@ function clearData() {
   gourmet_address = "";
   //default
   gourmet_dish = "中国菜";
-  gourmet_money = "$11 - $20 ";
+  gourmet_money = "$11-20";
   urls = [];
   headurl = ""; //
   headurlIndex = 0;
@@ -47,7 +47,7 @@ Page({
     total_pics_number: MAX_PIC_LENGTH,
     fileds: ['中国菜', '日本菜', '韩国菜', '东南亚(越南菜 泰国菜)', '法国菜', '英国菜', '德国菜', '意大利菜', '波兰菜', '墨西哥菜', '南美菜', '非洲菜', '地中海菜(土耳其菜', '清真菜', '咖啡店及糕点', '酒吧'],
     fIndex: 0,
-    moneys: ['$0 - $10', '$11 - $20 ', '$21 - $30', '$31 - $40', '$41 - $50, $51 + 💎'],
+    moneys: ['$0-10', '$11-20', '$21-30', '$31-40', '$41-50','$51+ 💎'],
     mIndex: 1,
     lenurls: 0
   },
@@ -107,7 +107,8 @@ Page({
     //add pictures
     ,
   add_pics: function() {
-      if (mDoing) return;
+    console.log("add_pic invoded!!!")
+      // if (mDoing) return;
       if (urls.length == MAX_PIC_LENGTH) {
         utils.showModal('错误', '最多添加' + MAX_PIC_LENGTH + '张图片')
         return;
@@ -254,7 +255,7 @@ Page({
         success: function(res) {
           if (res.authSetting['scope.userInfo']) {
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-            APP.getUserInfo({
+            app.getUserInfo({
               success: function(res) {
                 console.log(res.userInfo)
                 user_info = res.userInfo

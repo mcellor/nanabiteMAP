@@ -16,32 +16,27 @@
 
   <view class="content-topics" style="padding-left: 40px">
     <view class="topics-title">{{gourmet.dish_name}}</view>
-    <view class='topice-user_mini' >{{gourmet.dish_price}}</view>
+    <view class='topice-user_mini'>{{gourmet.dish_price}}</view>
   </view>
 
-        <view class="topice-text">
-          <text>{{gourmet.description}}</text>
-        </view>
-      <view class="sentence-user">
-            <text class="b">by {{gourmet.title}}</text>
-          </view>
-        
+  <view class="topice-text">
+    <text>{{gourmet.description}}</text>
+  </view>
+  <view class="sentence-user">
+    <text class="b">by {{gourmet.title}}</text>
+  </view>
+  <view class="sentence-user">
+    <text class="b">@ {{gourmet.address}}</text>
+  </view>
+
+
 
 
   <!-- <view class="ui-row" style="margin-bottom: 50px;margin-top: 10px;height:200px;">
     <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 40px;padding-right: 40px;">
       <view class="ui-col-content align-left valign-middle">
         <view class="content-sentence">
-          <view class="sentence-info">
-            <text>{{gourmet.description}}</text>
-          </view>
-          <view class="sentence-info">
-            <text>{{gourmet.dish_price}}</text>
-          </view>
-          <view class="sentence-info">
-            <text>{{gourmet.address}}</text>
-          </view>
-          <view class="sentence-book">{{gourmet.dish_name}}</view>
+          
           <view class="sentence-user">
             <text class="a"></text>
             <text class="b">{{gourmet.user_nickname}}</text>
@@ -77,8 +72,8 @@
 
     <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10rpx;">
       <view class="ui-col-content align-left valign-middle">
-        <view class="share-content-box" bindtap="getShareSentencTap">
-          <image src="../../imgs/ic_image.png" />
+        <view class="share-content-box" >
+          <image  bindtap="{{keepBindtap}}" src="../../imgs/{{keepBindtap}}.png" />
         </view>
       </view>
     </view>
@@ -88,6 +83,13 @@
     <text>查看位置</text>
   </view>
 
+
+    <!-- <view bindtap="{{keepBindtap}}" class="barBox ">
+      <image class="ijiBottomBarIco img-menu" src="../../imgs/{{keepLogsImg}}.png"></image>
+      <view>
+        <text>收藏</text>
+      </view>
+    </view> -->
 
   <!-- 
 <view class="content-topics" style="padding-left: 40px">

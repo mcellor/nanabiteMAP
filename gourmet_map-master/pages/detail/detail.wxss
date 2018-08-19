@@ -16,7 +16,7 @@ page{
 
 /*隔壁有坑头部部分  */
 .content-sentence {
-  width: 100%;
+  width: 90%;
 }
 .sentence-info {
   font-size: 34rpx;
