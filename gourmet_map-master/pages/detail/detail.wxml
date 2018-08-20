@@ -165,7 +165,7 @@
       踩</view>
     </view> -->
 
-  <view class="comment">
+  <view class="comment" >
 
     <block wx:if="{{!comments}}">
       <view class="center blank" wx:if="{{!showDialog}}" bindtap="toggleDialogHandle" style="padding-top:20px;">
@@ -178,7 +178,7 @@
       </view>
     </block>
 
-    <view class="comment_layout" wx:for="{{comments}}" wx:key="objectId">
+    <view class="comment_layout" wx:for="{{comments}}" wx:key="objectId" wx:if="{{!showDialog}}" bindtap="toggleDialogHandle">
 
       <view style="display:flex;padding: 0px 10px;">
         <view class="layout_left">

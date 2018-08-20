@@ -25,9 +25,9 @@ page{
 }
 
 .topice-user {
-  font-size: 15rpx;
+  font-size: 25px;
   margin: 0 auto;
-  color: #999;
+  color: black;
   font-weight: lighter;
   text-align: center;
 }
@@ -36,25 +36,25 @@ page{
 }
 .content-topics .topics-title {
   margin: 0 auto;
-  font-size: 40rpx;
+  font-size: 25px;
   color: #333;
   font-weight: lighter;
   padding-top: 440rpx;
 }
 #publisher{
-    font-size: 0.5em;
-    color: gray;
+    font-size: 0.6em;
+    color: black;
     vertical-align: middle;
 }
 .send_btn{
   align-items: center;
-  font-size:0.8em;
+  font-size:1em;
 	padding:10rpx 100rpx;
 	background:none;
 	margin-top: 200rpx;
   border: none;
   font-weight: lighter;
-  color: gray;
+  color: black;
 
 }
 button::after{ border: none; }

@@ -14,7 +14,7 @@
       <swiper-item>
         <text class='title0'>{{item.dish_name}}</text>
         <text class='title2'>{{item.title}}</text>
-        <image mode='aspectFill' data-item="{{item}}" data-id='{{index}}' src="{{item.urls}}" class="slide-image" width="355" height="200" bindtap='checkHeader' />
+        <image mode='aspectFill' data-item="{{item}}" data-id='{{index}}' src="{{item.urls}}" class="slide-image" width="355" height="300" bindtap='checkHeader' />
       </swiper-item>
     </block>
 
