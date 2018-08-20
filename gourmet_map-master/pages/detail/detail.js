@@ -326,15 +326,15 @@ Page({
     if (!mIsSupportOk) return;
     if (!that.data.gourmet) return;
     API.addEvaluation(that.data.gourmet.objectId, true);
-    var newNumber = that.data.gourmet.support + 1;
+    var oldNumber = that.data.gourmet.support ? that.data.gourmet.support : 0;
+    console.log(oldNumber);
+    var newNumber = oldNumber + 1;
     that.data.gourmet.support = newNumber;
-    that.setData({
+    this.setData({
       gourmet: that.data.gourmet
-
     })
     toggleSupport(that, true)
     mIsSupportOk = false;
-
   },
   //打开评论弹出层
   toggleDialogHandle: function() {

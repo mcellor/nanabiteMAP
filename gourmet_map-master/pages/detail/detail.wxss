@@ -35,7 +35,7 @@ page{
 .sentence-user {
   text-align: right;
   padding-right: 30rpx;
-  font-size: 28rpx;
+  font-size: 20rpx;
   font-weight: lighter;
   color: #999;
   padding-top: 12rpx;
