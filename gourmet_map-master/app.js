@@ -35,7 +35,6 @@ let app = {
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -43,49 +42,36 @@ let app = {
       }
     })
   },
-
-
     //获取用户信息
   setUserinfo: function (e) {
     //先判断缓存中时候存在用户信息
     let userinfo = wx.getStorageSync(USERINFOKEY)
     if (!userinfo) {
       wx.setStorageSync(USERINFOKEY, e.detail.userInfo)
-      console.log("we don have it");
       wx.reLaunch({
         url: '/pages/index/index'
       })
     } else {
-      console.log("we have it");
       wx.reLaunch({
         url: '/pages/index/index'
       })
     }
   },
+
   getUserinfo_1: function () {
     return wx.getStorageSync(USERINFOKEY)
   },
   
   getUserInfo: function(cb){
     var that = this
+    // console.log("Asdfarrw", this.globalData.userInfo);
     if(this.globalData.userInfo){
   typeof cb == "function" && cb(this.globalData.userInfo)
-}else {
+  }else {
   //调用登录接口
   getUserInfoByNetwork(that, cb)
 }
   }
-
-////////////////////ned
-  // , getUserInfo: function (cb) {
-  //   var that = this
-  //   if (this.globalData.userInfo) {
-  //     typeof cb == "function" && cb(this.globalData.userInfo)
-  //   } else {
-  //     //调用登录接口
-  //     getUserInfoByNetwork(that, cb)
-  //   }
-  // }
   //get locationInfo
   , getLocationInfo: function (cb) {
     var that = this;
@@ -108,9 +94,9 @@ let app = {
     }
   }
   , getSystemInfo: getSystemInfo
-
   , globalData: {
-    userInfo: null
+
+    userInfo: wx.getStorageSync(USERINFOKEY)
     , locationInfo: null
     , gourmets: []
     , gourmetsMap: {}
@@ -137,7 +123,8 @@ function getUserInfoByNetwork(that, cb) {
                 var userInfo = wx.getStorageSync(USERINFOKEY);
                 userInfo.openid = userData.openid;
                 that.globalData.userInfo = userInfo;
-                typeof cb == "function" && cb(that.globalData.userInfo)
+                wx.setStorageSync(USERINFOKEY, that.globalData.userInfo);
+                typeof cb == "function" && cb(that.globalData.userInfo);
                 //开始注册用户
                 var WXUser = Bmob.Object.extend("wxuser");
                 var wxuser = new WXUser();

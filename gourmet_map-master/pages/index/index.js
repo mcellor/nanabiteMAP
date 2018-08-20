@@ -11,6 +11,8 @@ var PAGE_SIZE = 50;
 var mPage = 1;
 var mIsmore = false;
 
+var ga = require('../../utils/ga.js');
+var HitBuilders = ga.HitBuilders;
 
 function showMap() {
   var that = this;
@@ -156,10 +158,25 @@ Page({
     loadFirstPage(this);
   },
   onShow: function() {
+
+    //GoogleAnalytics Collecting page info
+    var t = getApp().getTracker();
+    t.setScreenName('Index');
+    t.send(new HitBuilders.ScreenViewBuilder().build());
+    //GoogleAnalytics Collecting User info
+    t.set("&uid", app.getUserinfo_1().openid);
+    t.send(new HitBuilders.EventBuilder()
+      .setCategory("Signin")
+      .setAction("User Sign In")
+      .build());
+    
     if (!initFlag) return;
     if (!app.flags.refresh_index) return;
     app.flags.refresh_index = false;
     loadFirstPage(this);
+
+
+
   },
   onHide: function() {
     this.setData({

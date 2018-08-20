@@ -78,7 +78,7 @@ Page({
   }
   ,onShow: function(){
     var t = getApp().getTracker();
-    t.setScreenName('这是我的首屏页');
+    t.setScreenName('map');
     t.send(new HitBuilders.ScreenViewBuilder().build());
   }
   

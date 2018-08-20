@@ -73,7 +73,7 @@ Page({
   },
 
   bindGetUserInfo: function(e) {
-    console.log(e.detail.userInfo);
+    // console.log("!231@",e.detail);
     app.setUserinfo(e)
   },
 

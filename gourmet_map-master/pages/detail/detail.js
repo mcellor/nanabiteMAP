@@ -12,6 +12,10 @@ var mIsmore = true;
 var mLoading = false;
 var mIsSupportOk = false;
 
+
+var ga = require('../../utils/ga.js');
+var HitBuilders = ga.HitBuilders;
+
 function setLoading(loading) {
   mLoading = loading;
   utils.showLoading(loading);
@@ -91,6 +95,13 @@ Page({
     ic_support: "/imgs/ic_heart.png",
     ic_unsupport: "/imgs/ic_heart.png"
   },
+  onShow() {
+    var t = getApp().getTracker();
+    var desc = this.data.gourmet.objectId;
+    t.setScreenName('detail');
+    t.send(new HitBuilders.ScreenViewBuilder()
+      .setCustomDimension("dimension1", desc).build());
+  },
   onLoad: function(option) {
     var that = this;
     if (option.item) {
@@ -98,6 +109,7 @@ Page({
       that.setData({
         gourmet: gourmet
       })
+
       //检查是否已经浏览过
       var logs = wx.getStorageSync('readLogs') || [];
       if (logs.length > 0) {
@@ -159,6 +171,7 @@ Page({
     //
     mIsSupportOk = false; //防止用户马上点赞
   },
+  
   onHide() {
     this.setData({
       isShowUserPannel: false
